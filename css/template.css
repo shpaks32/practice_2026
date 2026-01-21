@@ -1,0 +1,213 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.justify-between {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.login-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+}
+
+.image-side {
+  position: relative;
+  width: 80%;
+  background-color: #000;
+}
+
+.bg-cover {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.form-side {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  background-color: #f4f6f8;
+}
+
+.login-header {
+  display: flex;
+  width: 100%;
+  padding: 15px 30px;
+  background-color: #333;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.title-logo-wrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.login-header h1 {
+  margin: 0;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.login-header .logo img {
+  width: auto;
+  height: 30px;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.form-wrapper form {
+  width: 100%;
+  max-width: 400px;
+  text-align: right;
+}
+
+.row {
+  margin-bottom: 20px;
+}
+
+.row label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.row input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  background-color: #f0f2f5;
+  font-size: 16px;
+  text-align: right;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.row input:focus {
+  border-color: #00c853;
+  background-color: #fff;
+}
+
+.btn-row {
+  margin-top: 30px;
+}
+
+.btn-success {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 4px;
+  background-color: #11de79;
+  color: white;
+  font-size: 16px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s;
+}
+
+.btn-success:hover {
+  background-color: #1d7683;
+}
+
+.alertMsg,
+.successMsg {
+  position: fixed;
+  z-index: 999;
+  bottom: 5%;
+  left: 2%;
+  display: none;
+  height: auto;
+  padding: 20px 10px;
+  border-radius: 10px;
+  font-size: inherit;
+}
+
+.alertMsg {
+  background-color: rgba(255, 228, 228, 0.75);
+  color: red;
+  box-shadow: 0 0 10px 0 rgba(205, 30, 11, 0.5);
+  animation: showFromLeft 0.3s linear;
+}
+
+.successMsg {
+  padding: 20px 0;
+  background-color: rgba(218, 249, 223, 0.75);
+  color: green;
+  box-shadow: 0 0 10px 0 rgba(11, 205, 61, 0.5);
+  animation: showFromLeft 0.3s normal;
+}
+
+@keyframes showFromLeft {
+  0% {
+    opacity: 0;
+    margin-left: -100%;
+  }
+  25% {
+    opacity: 0.2;
+    margin-left: -50%;
+  }
+  35% {
+    opacity: 0.4;
+    margin-left: -20%;
+  }
+  50% {
+    opacity: 0.8;
+    margin-left: -15%;
+  }
+  65% {
+    opacity: 0.9;
+    margin-left: -12%;
+  }
+  75% {
+    opacity: 0.9;
+    margin-left: -10%;
+  }
+  80% {
+    opacity: 0.9;
+    margin-left: -8%;
+  }
+  85% {
+    opacity: 0.95;
+    margin-left: -6%;
+  }
+  90% {
+    opacity: 0.95;
+    margin-left: -4%;
+  }
+  95% {
+    opacity: 0.95;
+    margin-left: -2%;
+  }
+  100% {
+    opacity: 1;
+    margin-left: 0;
+  }
+}
+
+.page-campaigns {
+  padding: 20px;
+  font-size: 24px;
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  text-align: right;
+}
