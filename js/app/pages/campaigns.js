@@ -22,7 +22,6 @@ export const campaigns = {
     }
 
     this.get()
-    this.GetFirstAndLastDate()
   },
   methods: {
     GetFirstAndLastDate () {
@@ -35,9 +34,13 @@ export const campaigns = {
       this.date2 = lastDayOfMonth.toISOString().substring(0, 10)
     },
     get () {
-      const data = this.parent.toFormData(this.parent.formData)
-      if (this.date !== '') data.append('date', this.date)
-      if (this.date2 !== '') data.append('date2', this.date2)
+      const data = new FormData()
+
+      if (this.date) data.append('date', this.date)
+      if (this.date2) data.append('date2', this.date2)
+
+      if (this.q) data.append('q', this.q)
+      if (this.sort) data.append('sort', this.sort)
 
       this.loader = 1
 
@@ -129,7 +132,9 @@ export const campaigns = {
     
     <div class="wrapper">
       <div class="flex panel">
+      <a class="btnS" href="#" @click.prevent="parent.formData={};$refs.new.active=1"><i class="fas fa-plus"></i> New</a>
         <div class="w20"></div>
+
 
         <div class="w60 ptb20 ac">
           <input type="date" v-model="date" @change="get()" /> 
@@ -137,9 +142,25 @@ export const campaigns = {
           <input type="date" v-model="date2" @change="get()" />
         </div>
 
-        <div class="w20 ptb30 ar">
+        <popup ref="new" :title="(parent.formData && parent.formData.id) ? 'Edit campaign' : 'New campaign'">
+          <div class="form inner-form">
+            <form @submit.prevent="action()" v-if="parent.formData">
+              
+              <div class="row">
+                <label>Name</label>
+                <input type="text" v-model="parent.formData.title" required placeholder="Enter campaign name...">
+              </div>
+
+              <div class="row pt20 ac">
+                <button class="btnS" v-if="parent.formData && parent.formData.id">Save Changes</button>
+                <button class="btnS" v-if="parent.formData && !parent.formData.id">Add Campaign</button>
+              </div>
+
+            </form>
+          </div>
+        </popup>
           <h1>Campaigns</h1>
-        </div>
+
       </div>
 
       <div class="table" v-if="data.items != ''">
@@ -159,7 +180,9 @@ export const campaigns = {
           <tbody>
             <tr v-for="(item, i) in data.items" :key="item.id || i">
               <td class="id">{{ item.id }}</td>
-              <td class="id"></td>
+              <td class="id">
+                 <toogle v-model="item.published" @update:modelValue="parent.formData = item;action();" />
+              </td>
               <td>
                 <router-link :to="'/campaign/' + item.id">{{ item.title }}</router-link>
               </td>
