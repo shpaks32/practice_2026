@@ -11,6 +11,6 @@ export const router = VueRouter.createRouter({
     { path: '/campaigns', name: 'Campaigns', component: campaigns },
     { path: '/campaign/:id', name: 'Campaign', component: campaign },
     { path: '/users', name: 'Users', component: users },
-    { path: '/user/:id', name: 'Users', component: user }
+    { path: '/user/:id', name: 'User', component: user }
   ]
 })
