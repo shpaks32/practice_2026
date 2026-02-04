@@ -13,6 +13,9 @@ export const header = {
   methods: {
     toogleActive () {
       this.active = this.active === 1 ? 0 : 1
+    },
+    toggleMenu () {
+      this.menu = this.menu === 1 ? 0 : 1
     }
   },
   template: `
@@ -34,32 +37,38 @@ export const header = {
                 <i class="fas fa-sign-out-alt"></i> {{ parent.user.user }} Log out
               </a>
             </div>
+            
           </div>
-
+            <div class='mobile-menu-btn' @click="toggleMenu()">
+               <i class="fas fa-bars"></i>
+            </div>
           <nav class="nav-section">
-          <div class = 'mobile-menu-btn'>
-          </div>
+         
+
             <ul :class="{active: menu==1}" v-if="parent.user && parent.user.type == 'admin'">
-              <li v-if="menu==1" class="close-li"><i class="fas fa-times" @click="menu=0"></i></li>
+              <li v-if="menu==1" class="close-li">
+                <i class="fas fa-times" @click="menu=0"></i>
+              </li>
               <li>
-                <router-link to="/users" :class="{'router-link-active': $route.path.indexOf('user') !== -1}">
+                <router-link to="/users" :class="{'router-link-active': $route.path.indexOf('user') !== -1}" @click.native="menu=0">
                   <i class="fas fa-users"></i> Users
                 </router-link>
               </li>
               <li>
-                <router-link to="/campaigns" :class="{'router-link-active': $route.path.indexOf('campaign') !== -1}">
+                <router-link to="/campaigns" :class="{'router-link-active': $route.path.indexOf('campaign') !== -1}" @click.native="menu=0">
                   <i class="fas fa-bullhorn"></i> Campaigns
                 </router-link>
               </li>
             </ul>
-            
 
             <ul :class="{active: menu==1}" v-if="parent.user && parent.user.type != 'admin'">
-              <li v-if="menu==1" class="close-li"><i class="fas fa-times" @click="menu=0"></i></li>
-              <li><router-link to="/statistics"><i class="fas fa-chart-area"></i> Statistics</router-link></li>
-              <li><router-link to="/ads"><i class="fas fa-image"></i> Ads</router-link></li>
-              <li><router-link to="/sites"><i class="fab fa-chrome"></i> Sites</router-link></li>
-              <li><router-link to="/payments"><i class="fas fa-credit-card"></i> Payments</router-link></li>
+              <li v-if="menu==1" class="close-li">
+                <i class="fas fa-times" @click="menu=0"></i>
+              </li>
+              <li><router-link to="/statistics" @click.native="menu=0"><i class="fas fa-chart-area"></i> Statistics</router-link></li>
+              <li><router-link to="/ads" @click.native="menu=0"><i class="fas fa-image"></i> Ads</router-link></li>
+              <li><router-link to="/sites" @click.native="menu=0"><i class="fab fa-chrome"></i> Sites</router-link></li>
+              <li><router-link to="/payments" @click.native="menu=0"><i class="fas fa-credit-card"></i> Payments</router-link></li>
             </ul>
           </nav>
 
